@@ -1,6 +1,6 @@
 <?php
     $hostname = "localhost";
-    $dbname = "side_project";
+    $dbname = "message_board";
     $username = "ajie1517";
     $password = "yoyo8914";
     try{
