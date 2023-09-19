@@ -1,6 +1,6 @@
 <?php
-    require_once("db_connect.php");
-    require_once("util.php");
+  require_once("db_connect.php");
+  require_once("util.php");
 ?>
 
 
@@ -35,8 +35,8 @@
           <span>密碼：</span>
           <input type="password" name="password">
         </div>
-        <input class="board__submit-btn" type="submit">
+        <input class="board__submit-btn" type="submit" value = 登入>
       </form>
-
+    </main>
   </body>
 </html>
