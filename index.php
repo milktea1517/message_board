@@ -74,10 +74,11 @@
                                                     </div>
                                                     <div class = "board__hr"></div>
                                                     `;
+                                    section_element.append(list_obj)
                                 });
                             },
                             error: function(){
-
+                                alert("Database Request Failed");
                             }
                         });
                     });

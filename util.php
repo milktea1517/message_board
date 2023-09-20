@@ -58,7 +58,7 @@
 
     function get_comment($pdo){
         $sql = "SELECT * FROM `message_board`.`message_data` ORDER BY `create_at` DESC;";
-        $stmt = $pdo->prepare();
+        $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
