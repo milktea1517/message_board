@@ -1,4 +1,5 @@
 <?php
+  session_start();
   require_once("db_connect.php");
   require_once("util.php");
 ?>
@@ -26,6 +27,11 @@
         </div>
       </div>
   
+      <?php
+        if(isset($_SESSION["login_fail"])){
+          echo '<h3 class="error">' . $_SESSION["login_fail"] . '</h3> ';
+        }
+      ?>
       <form class="board__new-comment-form" method="POST" action="handle_login.php">
         <div class="board__nickname">
           <span>帳號：</span>

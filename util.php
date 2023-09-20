@@ -1,5 +1,6 @@
 <?php
     require_once("db_connect.php");
+    session_start();
 
     function user_register($nickname, $username, $hashed_password, $pdo){
         $sql = "INSERT INTO `message_board`.`userdata` (nickname, username, password) VALUE (:nickname, :username, :password); ";
@@ -27,15 +28,15 @@
 
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if(password_verify($row["password"], $password)){
+            
+            if(password_verify($password, $row['password']) === true){
                 $_SESSION["verify"] = true;
                 $_SESSION["nickname"] = $row["nickname"];
                 header("Location: index.php");
             }
             else{
                 $_SESSION["verify"] = false;
-                $_SESSION["message"] = "帳號密碼錯誤！！";
+                $_SESSION["login_fail"] = "帳號密碼錯誤！！";
                 header("Location: login.php");
             }  
         }catch(PDOException $err){
@@ -43,4 +44,15 @@
         }
     }
 
+    function post($nickname, $content, $pdo){
+        $sql = "INSERT INTO `message_board`.`message_data` (nickname, content) VALUE (:nickname, :content); ";
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(":nickname", $nickname, PDO::PARAM_STR);
+        $stmt->bindParam(":content", $content, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        header("Location: index.php");
+    }
 ?>

@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION["verify"] = false;
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,6 +7,7 @@
         <meta charset="UTF-8">
         <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
         <link rel = "stylesheet" href = "css/style.css">
+        <script></script>
         <title>留言板練習</title>
     </head>
     <body>
@@ -19,7 +19,7 @@
                 <div class = "board__btn-block">
                     <!--這邊判斷是否登入-->
                     <?php
-                        if(!$_SESSION["verify"]){
+                        if(!isset($_SESSION["verify"]) || !$_SESSION["verify"]){
                             echo '<a class = "board__btn" href = register.php>註冊</a>
                                   <a class = "board__btn" href = login.php>登入</a>';
                         }
@@ -36,12 +36,15 @@
                     else{
                         echo '<form class="board__new-comment-form" method="POST" action="post_comment.php">
                                 <textarea name="content" rows="5" placeholder="請輸入留言"></textarea>
-                                <input class="board__submit-btn" type="submit">
+                                <input class="board__submit-btn" type="submit" value="送出">
                               </form>';
                     }
                 ?>
             <div class = "board__hr"></div>
             <section>
+                <script>
+                    
+                </script>
             </section>
         </main>
     </body>
