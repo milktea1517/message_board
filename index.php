@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
         <link rel = "stylesheet" href = "css/style.css">
-        <script></script>
+        <script src = "js/jquery-3.7.1.min.js"></script>
         <title>留言板練習</title>
     </head>
     <body>
@@ -42,10 +42,46 @@
                 ?>
             <div class = "board__hr"></div>
             <section>
-                <script>
-                    
-                </script>
             </section>
+            <script>
+                    $(document).ready(function(){
+                        $.ajax({
+                            url: "get_comment.php",
+                            method: "GET",
+                            datatype: "json",
+                            success: function(data){
+                                var section_element =$('section');
+                                var data = JSON.parse(data);
+                                $.each(data, function(index, comment){
+                                    var create_time = new Date(comment.create_at);
+                                    var year = create_time.getFullYear();
+                                    var month = String(create_time.getMonth() + 1).padStart(2, '0');
+                                    var day = String(create_time.getDate()).padStart(2, '0');
+                                    var hours = String(create_time.getHours()).padStart(2, '0');
+                                    var minutes = String(create_time.getMinutes()).padStart(2, '0');
+                                    var seconds = String(create_time.getSeconds()).padStart(2, '0');
+
+                                    var formatted_time = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+                                    var list_obj = `<div class="card">
+                                                        <div class = "card__avatar"></div>
+                                                    <div class="card__body">
+                                                        <div class = "card__info">
+                                                            <span class = "card__author">${comment.nickname}</span>
+                                                            <span class = "card__time">${formatted_time}</span>
+                                                        </div>
+                                                        <p class = "card__content">${comment.content}</p>
+                                                    </div>
+                                                    <div class = "board__hr"></div>
+                                                    `;
+                                });
+                            },
+                            error: function(){
+
+                            }
+                        });
+                    });
+            </script>
         </main>
     </body>
 </html>
