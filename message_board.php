@@ -65,12 +65,13 @@
 
                                     var list_obj = `<div class="card">
                                                         <div class = "card__avatar"></div>
-                                                    <div class="card__body">
-                                                        <div class = "card__info">
-                                                            <span class = "card__author">${comment.nickname}</span>
-                                                            <span class = "card__time">${formatted_time}</span>
+                                                        <div class="card__body">
+                                                            <div class = "card__info">
+                                                                <span class = "card__author">${comment.nickname}</span>
+                                                                <span class = "card__time">${formatted_time}</span>
+                                                            </div>
+                                                            <p class = "card__content">${comment.content}</p>
                                                         </div>
-                                                        <p class = "card__content">${comment.content}</p>
                                                     </div>
                                                     <div class = "board__hr"></div>
                                                     `;
